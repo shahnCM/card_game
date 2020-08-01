@@ -4,6 +4,9 @@ defmodule Cards do
   """
 
 
+  @doc """ 
+    Returns a list of strings representing a deck of playing cards
+  """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five"]
     suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
@@ -22,27 +25,42 @@ defmodule Cards do
     for suit <- suits, value <- values do
       "#{value} of #{suit}"
     end
-
   end   
 
+
+  @doc """ 
+    Shuffles the deck
+  """
   def shuffle(deck) do
     Enum.shuffle(deck)
   end  
 
+  @doc """ 
+    Checks if the deck contains the card you are looking for
+  """
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
 
+  @doc """ 
+    Makes a deal with hand_size you provided
+  """  
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
 
+  @doc """ 
+    Saves the deck to a file. User has to pass the file name as the second parameter
+  """  
   def save(deck, filename) do
     binary = :erlang.term_to_binary(deck)
     File.write(filename, binary)
   end 
 
   # Solution 3
+  @doc """ 
+    Loads the saved file from the storage
+  """
   def load(filename) do
     case File.read(filename) do
       {:ok, binary} -> :erlang.binary_to_term binary
@@ -69,6 +87,11 @@ defmodule Cards do
   #   }
   # end
 
+
+  @doc """ 
+    Creates deck then shuffles the deck then makes deal.
+    User has to provide hand_size as a parameter
+  """  
   def create_hand(hand_size) do
      Cards.create_deck 
       |> Cards.shuffle 
