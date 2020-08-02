@@ -5,4 +5,4 @@
 ## Installation
 
 run ```iex -S mix```
-then open ```cards.ex``` to what different functions return 
+then open ```cards.ex``` to see what different functions do 
